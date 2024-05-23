@@ -1,0 +1,61 @@
+{% extends "Base/base.html" %}
+{% block title %}Registration{% endblock title %}
+{% block content %}
+<div class="th-checkout-wrapper space-top space-extra-bottom">
+    <div class="container">
+        <div class="woocommerce-form-login-toggle">
+            <div class="woocommerce-info">
+                <h3 class='text-center text-white'><i>Registration Now </i></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form action="" method="POST" class="woocommerce-form-login">
+                    {% csrf_token %}
+                    {% for message in messages %}
+                      <div class="alert alert-{{ message.tags }} {% if message.tags == 'warning' %}bg-warning text-black{% elif message.tags == 'error' %}bg-danger{% elif message.tags == 'success' %}bg-success{% endif %}" role="alert">
+                        <h6 class="text-center">{{ message }}</h6>
+                      </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <label for="id_username">Username or email *</label>
+                        <input type="text" id="id_username" name="username" class="form-control" placeholder="Username or email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_first_name">First Name *</label>
+                        <input type="text" id="id_first_name" name="first_name" class="form-control" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_last_name">Last Name *</label>
+                        <input type="text" id="id_last_name" name="last_name" class="form-control" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_email">Email *</label>
+                        <input type="email" id="id_email" name="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="form-group position-relative">
+                        <label for="id_password">Password *</label>
+                        <input type="password" id="id_password" name="password1" class="form-control" placeholder="Password" required>
+                        <i class="far fa-eye position-absolute" style="right: 10px; top: 48px; cursor: pointer;" onclick="togglePassword('id_password')"></i>
+                    </div>
+                    <div class="form-group position-relative">
+                        <label for="id_password2">Confirm Password *</label>
+                        <input type="password" id="id_password2" name="password2" class="form-control" placeholder="Confirm Password" required>
+                        <i class="far fa-eye position-absolute" style="right: 10px; top: 48px; cursor: pointer;" onclick="togglePassword('id_password2')"></i>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="remembermylogin" name="rememberme" required>
+                            <label for="remembermylogin">Remember Me</label>
+                            <p>Have an account? <a href="{% url 'login' %}">Login</a></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="th-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

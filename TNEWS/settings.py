@@ -56,6 +56,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'Home.context_processors.categories_processor',
+                'Home.context_processors.Subcetagoris',
+                'Home.context_processors.NavImages',
             ],
         },
     },
@@ -111,6 +114,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS=[STATIC_DIR]
+LOGIN_REDIRECT_URL='home'
+
+MEDIA_URL='/media/'
+MEDIA_ROOT=BASE_DIR/'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
