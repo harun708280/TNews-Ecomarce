@@ -68,15 +68,18 @@ Blog Area
                 <div class="col-xl-6 mt-4 mt-xl-0">
                     <div class="">
                         <div class="blog-style1 style-big">
+                            {% for p in politics_news %}
                             <div class="blog-img">
-                                <img src="{% static "assets/img/blog/blog_2_1.jpg" %}" alt="blog image">
-                                <a data-theme-color="#FF9500" href="blog.html" class="category">Politics</a>
+                                <img src="{{ p.image.url }}" alt="blog image" width="600" height="400">
+
+                                <a data-theme-color="#FF9500" href="blog.html" class="category">{{p.sub_cetagory}}</a>
                             </div>
-                            <h3 class="box-title-30"><a class="hover-line" href="blog-details.html">Following the Moon, they are in Close space. choose the best</a></h3>
+                            <h3 class="box-title-30"><a class="hover-line" href="blog-details.html">{{p.title}}</a></h3>
                             <div class="blog-meta">
-                                <a href="author.html"><i class="far fa-user"></i>By - Tnews</a>
+                                <a href="author.html"><i class="far fa-user"></i>By - {{p.Create}}</a>
                                 <a href="blog.html"><i class="fal fa-calendar-days"></i>25 Mar, 2023</a>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
 
