@@ -13,18 +13,11 @@ News Area
                 <div class="title">Breaking News :</div>
                 <div class="news-wrap">
                     <div class="row slick-marquee">
+                        {% for all in all %}
                         <div class="col-auto">
-                            <a href="blog-details.html" class="breaking-news">Relaxation redefined, your beach resort sanctuary.</a>
+                            <a href="{% url "details" all.id %}" class="breaking-news">{{all.title}}</a>
                         </div>
-                        <div class="col-auto">
-                            <a href="blog-details.html" class="breaking-news">From health to fashion, lifestyle news curated.</a>
-                        </div>
-                        <div class="col-auto">
-                            <a href="blog-details.html" class="breaking-news">Sun, sand, and luxury at our resort</a>
-                        </div>
-                        <div class="col-auto">
-                            <a href="blog-details.html" class="breaking-news">Relaxation redefined, your beach resort sanctuary.</a>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -39,28 +32,32 @@ Blog Area
                     <div class="row gy-4">
                         <div class="col-xl-12 col-sm-6 border-blog">
                             <div class="blog-style1">
+                                {% for b in B %}
                                 <div class="blog-img">
-                                    <img src="{% static "assets/img/blog/blog_1_5.jpg" %}" alt="blog image">
-                                    <a data-theme-color="#FF9500" href="blog.html" class="category">Politics</a>
+                                    <img src="{{b.image.url}}" alt="blog image">
+                                    <a data-theme-color="#FF9500" href="blog.html" class="category">{{b.sub_cetagory}}</a>
                                 </div>
-                                <h3 class="box-title-22"><a class="hover-line" href="blog-details.html">Leadership for the People By the people</a></h3>
+                                <h3 class="box-title-22"><a class="hover-line" href="blog-details.html">{{b.title}}</a></h3>
                                 <div class="blog-meta">
-                                    <a href="author.html"><i class="far fa-user"></i>By - Tnews</a>
-                                    <a href="blog.html"><i class="fal fa-calendar-days"></i>28 Mar, 2023</a>
+                                    <i class="far fa-user"></i>By - {{b.Create}}
+                                    <a href="{% url "details" b.id %}"><i class="fal fa-calendar-days"></i>{{b.date}}</a>
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="col-xl-12 col-sm-6 border-blog">
                             <div class="blog-style1">
+                                {% for s in s %}
                                 <div class="blog-img">
-                                    <img src="{% static "assets/img/blog/blog_1_6.jpg" %}" alt="blog image">
-                                    <a data-theme-color="#4E4BD0" href="blog.html" class="category">Sports</a>
+                                    <img src="{{s.image.url}}" alt="blog image">
+                                    <a data-theme-color="#FF9500" href="blog.html" class="category">{{s.sub_cetagory}}</a>
                                 </div>
-                                <h3 class="box-title-22"><a class="hover-line" href="blog-details.html">Game on! Stay ahead withn Sports updates</a></h3>
+                                <h3 class="box-title-22"><a class="hover-line" href="blog-details.html">{{s.title}}</a></h3>
                                 <div class="blog-meta">
-                                    <a href="author.html"><i class="far fa-user"></i>By - Tnews</a>
-                                    <a href="blog.html"><i class="fal fa-calendar-days"></i>20 Mar, 2023</a>
+                                    <a href="{% url "details" s.id %}"><i class="far fa-user"></i>By - {{s.Create}}</a>
+                                    <a href="blog.html"><i class="fal fa-calendar-days"></i>{{s.date}}</a>
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -72,12 +69,12 @@ Blog Area
                             <div class="blog-img">
                                 <img src="{{ p.image.url }}" alt="blog image" width="600" height="400">
 
-                                <a data-theme-color="#FF9500" href="blog.html" class="category">{{p.sub_cetagory}}</a>
+                                <a data-theme-color="#FF9500" href="{% url "details" p.id %}" class="category">{{p.sub_cetagory}}</a>
                             </div>
-                            <h3 class="box-title-30"><a class="hover-line" href="blog-details.html">{{p.title}}</a></h3>
+                            <h3 class="box-title-30"><a class="hover-line" href="{% url "details" p.id %}">{{p.title}}</a></h3>
                             <div class="blog-meta">
-                                <a href="author.html"><i class="far fa-user"></i>By - {{p.Create}}</a>
-                                <a href="blog.html"><i class="fal fa-calendar-days"></i>25 Mar, 2023</a>
+                                <a href="{% url "details" p.id %}"><i class="far fa-user"></i>By - {{p.Create}}</a>
+                                <a href="{% url "details" p.id %}"><i class="fal fa-calendar-days"></i>{{p.date}}</a>
                             </div>
                             {% endfor %}
                         </div>
@@ -93,23 +90,28 @@ Blog Area
                         <!-- Single item -->
                         <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
                             <div class="row gy-4">
+                                {% for t in t %}
                                 <div class="col-xl-12 col-md-6 border-blog">
+                                   
                                     <div class="blog-style2">
                                         <div class="blog-img">
-                                            <img src="{% static "assets/img/blog/blog_3_1.jpg" %}" alt="blog image">
+                                            <img src="{{t.image.url}}" alt="blog image" width="100" height="100">
+
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#FF9500" href="blog.html" class="category">Politics</a>
-                                            <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">Stay informed, Navigate the world</a></h3>
+                                            <a data-theme-color="#FF9500" href="{% url "details" t.id %}" class="category">{{t.sub_cetagory}}</a>
+                                            <h3 class="box-title-18"><a class="hover-line" href="{% url "details" t.id %}">{{t.title}}</a></h3>
                                             <div class="blog-meta">
-                                                <a href="blog.html"><i class="fal fa-calendar-days"></i>14 Mar, 2023</a>
+                                                <a href="{% url "details" t.id %}"><i class="fal fa-calendar-days"></i>{{t.date}}</a>
                                             </div>
                                         </div>
 
                                     </div>
+                                    
                                 </div>
+                                {% endfor %}
 
-                                <div class="col-xl-12 col-md-6 border-blog">
+                                {% comment %} <div class="col-xl-12 col-md-6 border-blog">
                                     <div class="blog-style2">
                                         <div class="blog-img">
                                             <img src="{% static "assets/img/blog/blog_3_2.jpg" %}" alt="blog image">
@@ -155,30 +157,34 @@ Blog Area
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> {% endcomment %}
 
                             </div>
                         </div>
                         <!-- Single item -->
                         <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
                             <div class="row gy-4">
+                                {% for r in r %}
                                 <div class="col-xl-12 col-md-6 border-blog">
                                     <div class="blog-style2">
                                         <div class="blog-img">
-                                            <img src="{% static "assets/img/blog/blog_3_3.jpg" %}" alt="blog image">
+                                            <img src="{{r.image.url}}" alt="blog image" width="100" height="100">
+
                                         </div>
                                         <div class="blog-content">
-                                            <a data-theme-color="#00D084" href="blog.html" class="category">Life Style</a>
+                                            <a data-theme-color="#00D084" href="{% url "details" r.id %}" class="category">{{r.sub_cetagory}}</a>
                                             <h3 class="box-title-18"><a class="hover-line" href="blog-details.html">Style your life news For modern living</a></h3>
                                             <div class="blog-meta">
-                                                <a href="blog.html"><i class="fal fa-calendar-days"></i>16 Mar, 2023</a>
+                                                <a href="{% url "details" r.id %}"><i class="fal fa-calendar-days"></i>16 Mar, 2023</a>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
 
-                                <div class="col-xl-12 col-md-6 border-blog">
+                                {% endfor %}
+
+                                {% comment %} <div class="col-xl-12 col-md-6 border-blog">
                                     <div class="blog-style2">
                                         <div class="blog-img">
                                             <img src="{% static "assets/img/blog/blog_3_4.jpg" %}" alt="blog image">
@@ -224,7 +230,7 @@ Blog Area
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> {% endcomment %}
 
                             </div>
                         </div>
@@ -249,20 +255,22 @@ Blog Area
                 </div>
             </div>
             <div class="row th-carousel" id="blog-slide1" data-slide-show="4" data-lg-slide-show="3" data-md-slide-show="2" data-sm-slide-show="2">
+                {% for all in all %}
                 <div class="col-sm-6 col-xl-4">
                     <div class="blog-style1">
                         <div class="blog-img">
-                            <img src="{% static "assets/img/blog/blog_1_1.jpg" %}" alt="blog image">
-                            <a data-theme-color="#00D084" href="blog.html" class="category">Lifestyle</a>
+                            <img src="{{all.image.url}}" alt="blog image">
+                            <a data-theme-color="#00D084" href="{% url "details" all.id %}" class="category">{{all.sub_cetagory}}</a>
                         </div>
-                        <h3 class="box-title-22"><a class="hover-line" href="blog-details.html">Balance harmony and joy in Every lifestyle.</a></h3>
+                        <h3 class="box-title-22"><a class="hover-line" href="{% url "details" all.id %}">{{all.title}}</a></h3>
                         <div class="blog-meta">
-                            <a href="author.html"><i class="far fa-user"></i>By - Tnews</a>
-                            <a href="blog.html"><i class="fal fa-calendar-days"></i>27 Mar, 2023</a>
+                            <a href="{% url "details" all.id %}"><i class="far fa-user"></i>By - {{all.Create}}</a>
+                            <a href="{% url "details" all.id %}"><i class="fal fa-calendar-days"></i>{{all.date}}</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xl-4">
+                {% endfor %}
+                {% comment %} <div class="col-sm-6 col-xl-4">
                     <div class="blog-style1">
                         <div class="blog-img">
                             <img src="{% static "assets/img/blog/blog_1_2.jpg" %}" alt="blog image">
@@ -313,7 +321,7 @@ Blog Area
                             <a href="blog.html"><i class="fal fa-calendar-days"></i>22 Mar, 2023</a>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
         </div>
     </div><!--==============================

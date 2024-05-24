@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-
+from autoslug import AutoSlugField
 # Create your models here.
 from django.db import models
 
@@ -39,7 +39,7 @@ class Add_News(models.Model):
     vedio=models.FileField( upload_to='Vedeos/',blank=True,null=True)
     like=models.ManyToManyField(User, blank=True,null=True)
     total_views = models.IntegerField(default=0,blank=True,null=True)
-    
+    date=models.DateField( auto_now_add=True,blank=True,null=True)
     def __str__(self):
         return self.title
     
