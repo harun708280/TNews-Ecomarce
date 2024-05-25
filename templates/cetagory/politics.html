@@ -1,0 +1,50 @@
+
+{% extends "Base/base.html" %}
+{% block title %}Politics{% endblock title %}
+{% block content %}
+<!--==============================
+    Breadcumb
+============================== -->
+    <div class="breadcumb-wrapper">
+        <div class="container">
+            <ul class="breadcumb-menu">
+                <li><a href="home-newspaper.html">Home</a></li>
+                <li>Blog Three Column</li>
+            </ul>
+        </div>
+    </div>
+    <!--==============================
+Team Area  
+==============================-->
+    <section class="space-top space-extra-bottom">
+        <div class="container">
+            <div class="row gy-30 mb-30">
+                {% for p in pl %}
+                <div class="col-xl-4 col-sm-6">
+                    <div class="blog-style1">
+                        <div class="blog-img">
+                            <img src="{{p.image.url}}" alt="blog image">
+                            <a data-theme-color="#4E4BD0" href="blog.html" class="category">{{p.sub_cetagory}}</a>
+                        </div>
+                        <h3 class="box-title-24"><a class="hover-line" href="{% url "details" p.news_slug %}">{{p.title}}</a></h3>
+                        <div class="blog-meta">
+                            <a href="{% url "details" p.news_slug %}"><i class="far fa-user"></i>By - {{p.Create}}</a>
+                            <a href="{% url "details" p.news_slug %}"><i class="fal fa-calendar-days"></i>{{p.date}}</a>
+                        </div>  
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+            <div class="th-pagination mt-40 text-center">
+                <ul>
+                    <li><a href="blog.html">01</a></li>
+                    <li><a href="blog.html">02</a></li>
+                    <li><a href="blog.html">03</a></li>
+                    <li><a href="blog.html"><i class="fas fa-arrow-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    {% endblock content %}

@@ -417,6 +417,7 @@
                                         <a href="{% url "home" %}">Home</a>
                                         <ul class="sub-menu">
                                             {% for c in categories %}
+                                            
                                             <li><a href="home-newspaper.html">{{c.name}}</a></li>
                                             {% endfor %}
                                             {% comment %} <li><a href="home-magazine.html">Home Magazine</a></li>
@@ -430,8 +431,10 @@
                                         <a href="#">Category</a>
                                         <ul class="sub-menu">
                                             {% for sc in sub_cetagory %}
-                                            <li><a href="category.html">{{sc.name}}</a></li>
-                                            {% endfor %}
+                                            {% if sc.name == 'Politics' or sc.name == 'Business' or sc.name == 'Sports' %}
+                                                <li><a href="{% if sc.name == 'Politics'  %}{% url 'politics' %} {% elif sc.name == 'Business' %} {% url "buissnes" %} {% else %} {% url "sport" %} {% endif %}">{{ sc.name }}</a></li>
+                                                {% endif %}
+                                             {% endfor %}
                                             {% comment %} <li><a href="blog-three-column.html">Three Column</a></li>
                                             <li><a href="blog-three-column-sidebar.html">Three Column Sidebar</a></li> {% endcomment %}
                                         </ul>

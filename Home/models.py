@@ -40,8 +40,61 @@ class Add_News(models.Model):
     like=models.ManyToManyField(User, blank=True,null=True)
     total_views = models.IntegerField(default=0,blank=True,null=True)
     date=models.DateField( auto_now_add=True,blank=True,null=True)
+    
+    news_slug = AutoSlugField(populate_from='title', unique=True, null=True)
     def __str__(self):
         return self.title
     
     class Meta:
         verbose_name=("Add to News")
+        
+class TopNews(models.Model):
+    news=models.ForeignKey(Add_News,  on_delete=models.CASCADE)
+    date=models.DateField( auto_now_add=False)
+    news = AutoSlugField(populate_from='get_news_title', unique=True, null=True)
+
+    def get_news_title(self):
+        return self.news.title
+
+    def __str__(self):
+        return str(self.id)
+    
+class Populer(models.Model):
+    news=models.ForeignKey(Add_News, on_delete=models.CASCADE)
+    populer_slug=AutoSlugField(populate_from='get_news_title', unique=True, null=True)
+    date=models.DateField( auto_now_add=True)
+    
+    
+class News_populer(models.Model):
+    news=models.ForeignKey(Add_News, on_delete=models.CASCADE)
+    name=models.CharField(max_length=50,blank=True,null=True)
+    date=models.DateTimeField( auto_now_add=True)
+    populer_slug=AutoSlugField(populate_from='get_news_title',unique=True, null=True)
+    
+    def __str__(self):
+        return self.news.title
+    
+class Super_news(models.Model):
+    news=models.ForeignKey(Add_News, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    super_slug = AutoSlugField(populate_from='news_title', unique=True, null=True)
+    
+    def __str__(self):
+     return self.news.title
+
+    @property
+    def news_title(self):
+        return self.news.title
+    
+class top_news(models.Model):
+    news=models.ForeignKey(Add_News, on_delete=models.CASCADE)
+    date=models.DateField( auto_now_add=True)
+    top_slug = AutoSlugField(populate_from='news_title', unique=True, null=True)
+    
+    def __str__(self):
+        return self.news.title
+    
+    @property
+    def news_title(self):
+        return self.news.title
+    

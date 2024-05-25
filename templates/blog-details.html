@@ -257,12 +257,12 @@
                                 <div class="blog-style1">
                                     <div class="blog-img">
                                         <img src="{{re.image.url}}" alt="blog image">
-                                        <a data-theme-color="#00D084" href="{% url "details" re.id %}" class="category">{{re.sub_cetagory}}</a>
+                                        <a data-theme-color="#00D084" href="{% url "details" re.news_slug %}" class="category">{{re.sub_cetagory}}</a>
                                     </div>
-                                    <h3 class="box-title-22"><a class="hover-line" href="{% url "details" re.id %}">{{re.title}}</a></h3>
+                                    <h3 class="box-title-22"><a class="hover-line" href="{% url "details" re.news_slug %}">{{re.title}}</a></h3>
                                     <div class="blog-meta">
-                                        <a href="{% url "details" re.id %}"><i class="far fa-user"></i>By - {{re.Create}}</a>
-                                        <a href="{% url "details" re.id %}"><i class="fal fa-calendar-days"></i>{{re.date}}</a>
+                                        <a href="{% url "details" re.news_slug %}"><i class="far fa-user"></i>By - {{re.Create}}</a>
+                                        <a href="{% url "details" re.news_slug %}"><i class="fal fa-calendar-days"></i>{{re.date}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -346,12 +346,12 @@
                                 {% for re in recent %}
                                 <div class="recent-post">
                                     <div class="media-img">
-                                        <a href="{% url "details" re.id %}"><img src="{{re.image.url}}" alt="Blog Image"></a>
+                                        <a href="{% url "details" re.news_slug %}"><img src="{{re.image.url}}" alt="Blog Image"></a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="post-title"><a class="hover-line" href="{% url "details" re.id %}">{{re.title}}</a></h4>
+                                        <h4 class="post-title"><a class="hover-line" href="{% url "details" re.news_slug %}">{{re.title}}</a></h4>
                                         <div class="recent-post-meta">
-                                            <a href="{% url "details" re.id %}"><i class="fal fa-calendar-days"></i>{{re.date}}</a>
+                                            <a href="{% url "details" re.news_slug %}"><i class="fal fa-calendar-days"></i>{{re.date}}</a>
                                         </div>
                                     </div>
                                 </div>
